@@ -69,7 +69,8 @@ public class Operations {
         String text = "Выберите операцию: \n " +
                 "1. Выбрать по критерию \n " +
                 "2. Вывести весь список \n " +
-                "3. Завершить";
+                "3. Сортировать список по возрастанию \n " +
+                "4. Завершить \n";
 
         System.out.println(text);
 
@@ -81,7 +82,7 @@ public class Operations {
     public void start() {
 
         String operation = getOperations();
-        if (operation.equals("3")) {
+        if (operation.equals("4")) {
             scanner.close();
 
         } else if (operation.equals("1")) {
@@ -92,6 +93,19 @@ public class Operations {
         } else if (operation.equals("2")) {
             printList();
         }
+
+        else if (operation.equalsIgnoreCase("3")) {
+            SortSet();
+        }
+    }
+
+    private void SortSet() {
+        System.err.println("Список отсорирован по алфавиту:");
+
+        // Сортировка в алфавитном порядке.
+        notebooks.stream()
+                .sorted(new NotebookComparator())
+                .forEach(p -> System.out.println(p.toString()));
     }
 
     private void filteredList(int criterion) {
@@ -127,6 +141,12 @@ public class Operations {
 
     }
 
+}
 
-    
+class NotebookComparator implements Comparator<Notebook> {
+
+    public int compare(Notebook a, Notebook b) {
+
+        return a.getName().toUpperCase().compareTo(b.getName().toUpperCase());
+    }
 }

@@ -9,7 +9,6 @@ public class Notebook {
     private String _opSystem;
     private String _model;
     private int _price;
-    private Object _criterion;
 
     public Notebook(String name, int RAM, String opSystem, int price, String model) {
         this._name = name;
